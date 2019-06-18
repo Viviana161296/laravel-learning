@@ -28,7 +28,7 @@ class ProjectsController extends Controller
 
             request()->validate([
                 'title'=>['required', 'min:3'],
-                'description'=>['required', 'min:6']
+                'description'=>['required', 'min:5']
             ]);
                        // return request()->all();
             $project=new project();
