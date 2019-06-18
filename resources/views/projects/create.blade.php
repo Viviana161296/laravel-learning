@@ -12,16 +12,25 @@
          <div class="field">
              <label class="label" for="title">Project Title</label>
              <div class="control">
-             <input type="text" name="title" placeholder="Project title" required>
+             <input type="text" class="input {{ $errors->has('title') ? 'is-danger': ''}}" name="title"  value="{{ old('title')}}" placeholder="Project title">
              </div>
             </div>
          <div>
-             <textarea name="description" placeholder="Project description" required></textarea>
+             <textarea name="description"  class="input {{ $errors->has('title') ? 'is-danger': ''}}"  placeholder="Project description">{{ old('description')}}</textarea>
          </div>
          <div>
              <button type="submit">Create project</button>
          </div>
-     </form>
 
+         @if($errors->any())
+         <div class="notification is-danger">
+             <ul>
+                 @foreach($errors->all() as $error)
+                  <li>{{$error}}</li>
+                  @endforeach
+             </ul>
+         </div>
+         @endif
+     </form>
   </body>
 </html>
