@@ -1,13 +1,9 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="uft-8"/>
-    <title>Create Projects</title>
-  </head>
-  <body>
+@extends('layout')
+
+@section('content')
       <h1>Create a new project</h1>
 
-     <form method="POST" action="/projects">
+     <form method="POST" action="/projects" style="margin-bottom:lem;">
         {{csrf_field()}}
          <div class="field">
              <label class="label" for="title">Project Title</label>
@@ -16,14 +12,14 @@
              </div>
             </div>
          <div>
-             <textarea name="description"  class="input {{ $errors->has('title') ? 'is-danger': ''}}"  placeholder="Project description">{{ old('description')}}</textarea>
+             <textarea name="description"  class="textarea {{ $errors->has('title') ? 'is-danger': ''}}"  placeholder="Project description">{{ old('description')}}</textarea>
          </div>
          <div>
-             <button type="submit">Create project</button>
+             <button type="submit"  class="btn btn-primary" >Create project</button>
          </div>
 
          @if($errors->any())
-         <div class="notification is-danger">
+         <div class="alert alert-danger" role="alert">
              <ul>
                  @foreach($errors->all() as $error)
                   <li>{{$error}}</li>
@@ -31,6 +27,6 @@
              </ul>
          </div>
          @endif
+
      </form>
-  </body>
-</html>
+     @endsection

@@ -8,62 +8,69 @@ use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {
         $projects = project::all();
-
 
         return view('projects.index', compact('projects'));
     }
 
-    public function create(){
+    public function create()
+    {
+        $projects = project::all();
 
-                $projects = project::all();
+        return view('projects.create');
+    }
 
+    public function store()
+    {
+        request()->validate([
+            'title'=>['required', 'min:3'],
+            'description'=>['required', 'min:5']
+        ]);
 
-                return view('projects.create');
-            }
+        $project=new project();
+        $project->title= request('title');
+        $project->description=request('description');
 
-    public function store(){
+        $project->save();
+        return redirect('/projects');
+    }
 
-            request()->validate([
-                'title'=>['required', 'min:3'],
-                'description'=>['required', 'min:5']
-            ]);
-                       // return request()->all();
-            $project=new project();
-            $project->title= request('title');
-            $project->description=request('description');
-
-            $project->save();
-            return redirect('/projects');
-                    }
-     public function show($id){
+     public function show($id)
+     {
         $project=project::findOrFail($id);
-        return $project;
-         return view('projects.show', compact('project'));
-         }
-      public function edit($id)
-      {
-          $project=project::findOrFail($id);
 
-          return view('projects.edit', compact('project'));
-      }
-      public function update($id)
-      {
-         $project=project::findOrFail($id);
+        return view('projects.show', compact('project'));
+     }
 
-         $project->Title=request('title');
-         $project->Description=request('description');
+    public function edit($id)
+    {
+        $project=project::findOrFail($id);
+
+        return view('projects.edit', compact('project'));
+    }
+
+    public function update($id)
+    {
+        $project=project::findOrFail($id);
+
+        request()->validate
+        ([
+            'title'=>['required', 'min:3'],
+            'description'=>['required', 'min:5']
+        ]);
+        $project->Title=request('title');
+        $project->Description=request('description');
 
         $project->save();
 
         return redirect('/projects');
-      }
+    }
 
-      public function destroy($id)
-      {
-          Project::findOrFail($id)->delete();
-          return redirect('/projects');
-        }
+    public function destroy($id)
+    {
+        Project::findOrFail($id)->delete();
+        return redirect('/projects');
+    }
 }

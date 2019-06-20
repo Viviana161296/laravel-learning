@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
+<h1>Projects</h1>
     <ul>
-        <h1>Projects</h1>
         @foreach ($projects as $project)
 
             <li>
@@ -14,8 +14,8 @@
     </ul>
 
     <p>
-        <a href="/projects/create">Create</a>
-    </p>
+            <a class="btn btn-primary" href="/projects/create" role="button">create</a>
+   </p>
 
 
 @endsection
