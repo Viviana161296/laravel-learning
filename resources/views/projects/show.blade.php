@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('content')
-    <h1 class="title">{{$project->Title}}</h1>
-    <h1 class="description">{{$project->Description}}</h1>
+    <h3 class="title"><strong>{{$project->Title}}</strong></h3>
+    <h5 class="description">{{$project->Description}}</h5>
 
     <p>
-        <a href="/projects/{{$project->id}}/edit">Edit</a>
+        <a class="btn btn-primary" href="/projects/{{$project->id}}/edit" role="button">Edit</a>
     </p>
 
 @endsection
