@@ -25,4 +25,6 @@ Route::get('/', function () {
 route::resource('projects', 'ProjectsController');
 
 Route::post('/projects/{project}/tasks', 'ProjectTaskController@store');
-Route::patch('/tasks/{task}', 'ProjectTaskController@update');
+
+Route::post('/completed-tasks/{task}', 'CompletedTasksController@store');
+Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
