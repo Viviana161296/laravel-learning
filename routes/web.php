@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::resource('projects', 'ProjectsController');
+route::resource('projects', 'ProjectsController')->middleware('can:view,project');
 
 Route::post('/projects/{project}/tasks', 'ProjectTaskController@store');
 
