@@ -34,7 +34,7 @@ class ProjectsController extends Controller
 
         $project=Project::create($attributes);
 
-        \Mail::to('viviana161296@gmail.com')->send(
+        \Mail::to($project->owner->email)->send(
             new ProjectCreated($project)
         );
         return redirect('/projects');
