@@ -1,93 +1,71 @@
-## COMPLIANCE HUB
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></img></p>
 
-Plataforma ecommerce para cursos.
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
+## About Laravel
 
-## Ambiente de desarrollo
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-Para levantar de manera agíl y rápido el ambiente de desarrollo se recomienda usar [docker](https://www.docker.com/get-started),
-una vez instalado esta herramienta solo es necesario ejecutar lo siguiente:
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-1. Descargar repositorio e instalar de manera local dependecias de php. Es preferible tener de un principio los vendor files en el host
-porque en muchas ocaciones es más facil conocer la biblioteca desde el código fuente que en la documentación.
-```
-git clone git@github.com:wearetherobots/compliancehub.git
-cd compliancehub
-cp .env.example .env
-docker pull composer:latest
-docker run -v $HOME/.cache/composer:/tmp --rm -v $(pwd):/app -w /app composer:latest composer install --ignore-platform-reqs
-```
+## Learning Laravel
 
-2. Hacer build de las imagenes y creación de container este paso se requiere la primera vez y sólo cuando algo del directorio de ``.docker``
-tenga algún cambio.
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-```
-docker-compose up --build
-```
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
 
-Para quitar los servicios con sólo:
+## Laravel Sponsors
 
-```
-docker-compose down
-```
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-O bien para volverlos a levantar sin hacer build
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- [UserInsights](https://userinsights.com)
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
+- [CodeBrisk](https://codebrisk.com)
+- [1Forge](https://1forge.com)
+- [TECPRESSO](https://tecpresso.co.jp/)
+- [Runtime Converter](http://runtimeconverter.com/)
+- [WebL'Agence](https://weblagence.com/)
+- [Invoice Ninja](https://www.invoiceninja.com)
+- [iMi digital](https://www.imi-digital.de/)
+- [Earthlink](https://www.earthlink.ro/)
+- [Steadfast Collective](https://steadfastcollective.com/)
+- [We Are The Robots Inc.](https://watr.mx/)
+- [Understand.io](https://www.understand.io/)
+- [Abdel Elrafa](https://abdelelrafa.com)
 
-```
-docker-compose up
-```
+## Contributing
 
-3. Ejecutar migraciones:
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-```
-docker-compose run artisan migrate
-```
+## Security Vulnerabilities
 
-4. Importar datos de sepomex:
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-```
-docker-compose run artisan sepomex:import
-```
+## License
 
-5. Tener los datos de las membresias de stripe en la base de datos, para pruebas y con las mismas credenciales del env
-se pueden usar estas:
-
-```
-INSERT INTO `subscription_plans` (`id`, `code`, `product_api_id`, `monthly_price`, `monthly_price_api_id`, `yearly_price`, `yearly_price_api_id`, `created_at`, `updated_at`) VALUES
-('1', 'plan_user', 'prod_IFKZ92aEo2u9gs', '150.00', 'price_1HeptxDwz6d8cBxpRrRsZUdm', '1650.00', 'price_1HeptxDwz6d8cBxpEvH94oe9', '2020-10-22 17:40:19', '2020-10-22 17:40:19'),
-('2', 'plan_member', 'prod_IFKaJfxziZ46Wj', '350.00', 'price_1Hepv1Dwz6d8cBxp2OsxH7HF', '3850.00', 'price_1Hepv0Dwz6d8cBxpCsBkUpAA', '2020-10-22 17:40:19', '2020-10-22 17:40:19'),
-('3', 'plan_partner', 'prod_IFKafneuAgoBD5', '750.00', 'price_1HepviDwz6d8cBxpqs8mWwS5', '8250.00', 'price_1HepviDwz6d8cBxpOAqSBSo0', '2020-10-22 17:40:19', '2020-10-22 17:40:19');
-```
-
-6. Instalar bibliotecas npm y hacer build de los public assets js y css principalmente:
-
-```
-docker-compose run node npm install
-docker-compose run node npm run dev
-```
-
-7. Visitar ``http://127.0.0.1:8080/`` y listo.
-
-## Extra Nova Vue DevTools
-Por default el JavaScript de Nova está compilado para producción. Por lo cual, no podrás acceder a Vue DevTools sin compilar el JavaScript de desarrollo de Nova. Para lograr esto, ejecuta los siguientes comandos en la terminal desde la raíz del proyecto:
-
-````
-cd ./vendor/laravel/nova
-mv webpack.mix.js.dist webpack.mix.js
-npm install
-npm run dev
-rm -rf node_modules
-cd -
-php artisan nova:publish
-```
-
-## Para crear un nuevo administrador de nova usar el siguiente comando
-`````
-php artisan nova:user
-````
-
-## Autores
-
-- Aftab Hussain Miranda (aftab@watr.mx)
-- Cinthia Vicente Cruz (cinthia@watr.mx)
+The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
